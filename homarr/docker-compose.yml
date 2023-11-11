@@ -5,8 +5,10 @@ services:
     image: ghcr.io/ajnart/homarr:0.14.0
     restart: unless-stopped
     volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
       - /srv/container/data/homarr/configs:/app/data/configs
       - /srv/container/data/homarr/icons:/app/public/icons
+      - /srv/container/data/homarr/data:/data
 networks:
   default:
     external: true
