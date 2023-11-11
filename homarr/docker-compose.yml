@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  homarr:
+    container_name: homarr
+    image: ghcr.io/ajnart/homarr:0.14.0
+    restart: unless-stopped
+    volumes:
+      - /srv/container/data/homarr/configs:/app/data/configs
+      - /srv/container/data/homarr/icons:/app/public/icons
+networks:
+  default:
+    external: true
+    name: home
