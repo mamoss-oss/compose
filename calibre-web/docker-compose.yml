@@ -1,0 +1,18 @@
+---
+version: "3.8"
+services:
+  calibre-web:
+    image: ghcr.io/linuxserver/calibre-web:0.6.21
+    container_name: calibre-web
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - DOCKER_MODS=linuxserver/mods:universal-calibre #optional - adds the calibre binary to the container for book file type conversion
+      #- OAUTHLIB_RELAX_TOKEN_SCOPE=1 #optional
+    volumes:
+      - /srv/container/data/calibre-web/config:/config
+      - "${ebooks_path}:/books"
+    ports:
+      - 8083:8083
+    restart: unless-stopped
