@@ -1,0 +1,20 @@
+---
+version: "3.8"
+services:
+  kavita:
+    image: ghcr.io/linuxserver/kavita:0.7.10
+    container_name: kavita
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - /srv/container/data/kavita/config:/config
+      - "${ebooks_path}:/data"
+    ports:
+      - 5000:5000
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: home
