@@ -2,13 +2,13 @@ version: '3.8'
 services:
   gitea:
     container_name: gitea
-    image: gitea/gitea:1.20
+    image: gitea/gitea:1.21
     environment:
       - USER_UID=1000
       - USER_GID=1000
     restart: unless-stopped
     volumes:
-      - /srv/container/data/gitea/data:/data
+      - "${data_path}:/data"
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
 networks:
