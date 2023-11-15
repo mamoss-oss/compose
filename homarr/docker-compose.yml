@@ -2,13 +2,16 @@ version: '3.8'
 services:
   homarr:
     container_name: homarr
-    image: ghcr.io/ajnart/homarr:0.14.0
+    image: ghcr.io/ajnart/homarr:0.14.1
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /srv/container/data/homarr/configs:/app/data/configs
-      - /srv/container/data/homarr/icons:/app/public/icons
-      - /srv/container/data/homarr/data:/data
+      - "${configs_path}:/app/data/configs"
+      - "${icons_path}:/app/public/icons"
+      - "${data_path}:/data"
+    environment:
+      - PUID=1000
+      - PGID=1000
 networks:
   default:
     external: true
