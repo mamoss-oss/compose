@@ -23,6 +23,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - WOODPECKER_SERVER=woodpecker-server:9000
+      - WOODPECKER_HEALTHCHECK_ADDR=34567
       - WOODPECKER_AGENT_SECRET=${WOODPECKER_AGENT_SECRET}
 
 networks:
