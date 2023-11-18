@@ -1,0 +1,31 @@
+# docker-compose.yml
+version: '3.8'
+services:
+  woodpecker-server:
+    image: woodpeckerci/woodpecker-server:latest
+    volumes:
+      - "${server_data}:/var/lib/woodpecker/"
+    environment:
+      - WOODPECKER_OPEN=true
+      - WOODPECKER_HOST=${WOODPECKER_HOST}
+      - WOODPECKER_AGENT_SECRET=${WOODPECKER_AGENT_SECRET}
+      - WOODPECKER_GITEA=true
+      - WOODPECKER_GITEA_URL=gitea
+
+  woodpecker-agent:
+    image: woodpeckerci/woodpecker-agent:latest
+    command: agent
+    restart: always
+    depends_on:
+      - woodpecker-server
+    volumes:
+      - ${agent_config}:/etc/woodpecker
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WOODPECKER_SERVER=woodpecker-server:9000
+      - WOODPECKER_AGENT_SECRET=${WOODPECKER_AGENT_SECRET}
+
+networks:
+  default:
+    external: true
+    name: home
