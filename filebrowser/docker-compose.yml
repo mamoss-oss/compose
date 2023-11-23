@@ -2,7 +2,7 @@
 version: "3.8"
 services:
   filebrowser:
-    image: filebrowser/filebrowser:v2.26.0
+    image: filebrowser/filebrowser
     container_name: filebrowser
     user: "${UID}:${GID}"
     environment:
