@@ -2,15 +2,16 @@
 version: "3.8"
 services:
   filebrowser:
-    image: filebrowser/filebrowser
+    image: filebrowser/filebrowser:s6
     container_name: filebrowser
-    user: "${UID}:${GID}"
     environment:
       - TZ=Europe/Berlin
+      - PUID=${UID}
+      - PGID=${GID}
     volumes:
       - "${files_root_path}:/srv"
-      - "${db_path}:/database.db"
-      - "${json_path}:/.filebrowser.json"
+      - "${db_path}:/database/filebrowser.db"
+      - "${json_path}:/config/settings.json"
     restart: unless-stopped
 networks:
   default:
