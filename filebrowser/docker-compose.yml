@@ -4,15 +4,13 @@ services:
   filebrowser:
     image: filebrowser/filebrowser:v2.26.0
     container_name: filebrowser
+    user: "${UID}:${GID}"
     environment:
-      - PUID=1000
-      - PGID=1000
       - TZ=Europe/Berlin
     volumes:
       - "${files_root_path}:/srv"
-      - "${config_path}:/config"
-      # - "${db_path}:/database.db"
-      # - "${json_path}:/.filebrowser.json"
+      - "${db_path}:/database.db"
+      - "${json_path}:/.filebrowser.json"
     restart: unless-stopped
 networks:
   default:
