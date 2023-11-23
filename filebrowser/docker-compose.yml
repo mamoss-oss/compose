@@ -10,8 +10,9 @@ services:
       - TZ=Europe/Berlin
     volumes:
       - "${files_root_path}:/srv"
-      - "${db_path}:/database.db"
-      - "${json_path}:/.filebrowser.json"
+      - "${config_path}:/config"
+      # - "${db_path}:/database.db"
+      # - "${json_path}:/.filebrowser.json"
     restart: unless-stopped
 networks:
   default:
