@@ -2,7 +2,7 @@
 version: "3.8"
 services:
   kavita:
-    image: ghcr.io/linuxserver/kavita:0.7.10
+    image: ghcr.io/linuxserver/kavita:0.7.11
     container_name: kavita
     environment:
       - PUID=1000
