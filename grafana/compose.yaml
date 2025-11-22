@@ -3,7 +3,7 @@ services:
     image: grafana/grafana:latest
     container_name: grafana
     restart: unless-stopped
-    environment:
+    # environment:
       # increases the log level from info to debug
       # - GF_LOG_LEVEL=debug
     # ports:
