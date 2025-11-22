@@ -1,0 +1,20 @@
+services:
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    environment:
+      # increases the log level from info to debug
+      # - GF_LOG_LEVEL=debug
+    # ports:
+    #   - '3000:3000'
+    volumes:
+      - 'grafana_storage:/var/lib/grafana'
+volumes:
+  grafana_storage: {}
+
+networks:
+  default:
+    external:
+      true
+    name: n150
